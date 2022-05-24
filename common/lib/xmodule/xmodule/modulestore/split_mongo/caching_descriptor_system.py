@@ -20,7 +20,7 @@ from xmodule.modulestore.split_mongo import BlockKey, CourseEnvelope
 from xmodule.modulestore.split_mongo.definition_lazy_loader import DefinitionLazyLoader
 from xmodule.modulestore.split_mongo.id_manager import SplitMongoIdManager
 from xmodule.modulestore.split_mongo.split_mongo_kvs import SplitMongoKVS
-from xmodule.util.misc import get_coursekey_library
+from xmodule.util.misc import get_locator_attribute
 from xmodule.x_module import XModuleMixin
 
 log = logging.getLogger(__name__)
@@ -48,7 +48,7 @@ class CachingDescriptorSystem(MakoDescriptorSystem, EditInfoRuntimeMixin):  # li
             underlying modulestore
         """
         # needed by capa_problem (as runtime.resources_fs via this.resources_fs)
-        course_library = get_coursekey_library(course_entry.course_key)
+        course_library = get_locator_attribute(course_entry.course_key)
         if course_library:
             root = modulestore.fs_root / course_entry.course_key.org / course_library / course_entry.course_key.run  # lint-amnesty, pylint: disable=line-too-long
         else:

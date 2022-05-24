@@ -9,7 +9,7 @@ from opaque_keys.edx.django.models import LearningContextKeyField
 from simple_history.models import HistoricalRecords
 
 from xmodule.modulestore import ModuleStoreEnum
-from xmodule.util.misc import get_coursekey_library
+from xmodule.util.misc import get_locator_attribute
 
 User = get_user_model()
 
@@ -93,7 +93,7 @@ class SplitModulestoreCourseIndex(models.Model):
         return {
             "_id": ObjectId(self.objectid),
             "org": self.course_id.org,
-            "course": get_coursekey_library(self.course_id),
+            "course": get_locator_attribute(self.course_id),
             "run": self.course_id.run,  # pylint: disable=no-member
             "edited_by": self.edited_by_id,
             "edited_on": self.edited_on,

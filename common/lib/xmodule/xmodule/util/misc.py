@@ -116,11 +116,11 @@ def is_xblock_an_assignment(xblock):
     return graded and scored
 
 
-def get_coursekey_library(course_key):
+def get_locator_attribute(locator):
     """
     Returns respective attribute to distinguish betweeen LibraryLocator and CourseLocator objects.
     """
-    course_library = course_key.course
-    if isinstance(course_key, LibraryLocator):
-        course_library = course_key.library
-    return course_library
+    attribute = locator.course
+    if isinstance(locator, LibraryLocator):
+        attribute = locator.library
+    return attribute
